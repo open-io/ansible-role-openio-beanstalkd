@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+[Service.{{ openio_beanstalkd_namespace }}-beanstalkd-{{ openio_beanstalkd_serviceid }}]
+command=/usr/bin/beanstalkd -l {{ openio_beanstalkd_bind_address }} -p {{ openio_beanstalkd_bind_port }} -u openio -b {{ openio_beanstalkd_volume }} -f {{ openio_beanstalkd_fsync }} -s {{ openio_beanstalkd_binlogsize }}
+enabled=true
+start_at_boot=true
+on_die=respawn
+group={{ openio_beanstalkd_namespace }},beanstalkd,{{ openio_beanstalkd_serviceid }}
+uid=openio
+gid=openio
+env.PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin

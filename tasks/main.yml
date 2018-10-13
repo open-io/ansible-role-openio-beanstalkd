@@ -1,4 +1,4 @@
-# roles/ROLENAME/tasks/main.yml
+# roles/beanstalkd/tasks/main.yml
 ---
 - name: "Include {{ ansible_distribution }} variables"
   include_vars: "{{ item }}"
@@ -33,10 +33,10 @@
     path: "{{ item }}"
   register: _dir
   with_items:
-    - "/etc/gridinit.d/{{ openio_ROLENAME_namespace }}"
-    - "{{ openio_ROLENAME_sysconfig_dir }}/ROLENAME-{{ openio_ROLENAME_serviceid }}"
-    #- "{{ openio_ROLENAME_volume }}"
-    - "/var/log/oio/sds/{{ openio_ROLENAME_namespace }}/ROLENAME-{{ openio_ROLENAME_serviceid }}"
+    - "/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"
+    - "{{ openio_beanstalkd_sysconfig_dir }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"
+    - "{{ openio_beanstalkd_volume }}"
+    - "/var/log/oio/sds/{{ openio_beanstalkd_namespace }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"
 
 - name: Ensure directories exists
   file:
@@ -58,20 +58,20 @@
     group: openio
     mode: 0644
   with_items:
-    - src: "ROLENAME.conf.j2"
-      dest: "{{ openio_ROLENAME_sysconfig_dir }}/\
-        ROLENAME-{{ openio_ROLENAME_serviceid }}/ROLENAME-{{ openio_ROLENAME_serviceid }}.conf"
-    - src: "gridinit_ROLENAME.conf.j2"
-      dest: "{{ openio_ROLENAME_gridinit_dir }}/{{ openio_ROLENAME_gridinit_file_prefix }}\
-        ROLENAME-{{ openio_ROLENAME_serviceid }}.conf"
-  register: _ROLENAME_conf
+    - src: "beanstalkd.conf.j2"
+      dest: "{{ openio_beanstalkd_sysconfig_dir }}/\
+        beanstalkd-{{ openio_beanstalkd_serviceid }}/beanstalkd-{{ openio_beanstalkd_serviceid }}.conf"
+    - src: "gridinit_beanstalkd.conf.j2"
+      dest: "{{ openio_beanstalkd_gridinit_dir }}/{{ openio_beanstalkd_gridinit_file_prefix }}\
+        beanstalkd-{{ openio_beanstalkd_serviceid }}.conf"
+  register: _beanstalkd_conf
 
-- name: restart ROLENAME
+- name: restart beanstalkd
   shell: |
     gridinit_cmd reload
-    gridinit_cmd restart  {{openio_ROLENAME_namespace}}-ROLENAME-{{openio_ROLENAME_serviceid}}
-  when: 
-    - _ROLENAME_conf.changed
-    - not openio_ROLENAME_provision_only
+    gridinit_cmd restart  {{openio_beanstalkd_namespace}}-beanstalkd-{{openio_beanstalkd_serviceid}}
+  when:
+    - _beanstalkd_conf.changed
+    - not openio_beanstalkd_provision_only
   tags: configure
 ...

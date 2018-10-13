@@ -1,6 +1,6 @@
-# roles/ROLENAME/vars/RedHat.yml
+# roles/beanstalkd/vars/RedHat.yml
 # Distribution-specific variables for RHEL, CentOS, ...
 ---
-ROLENAME_packages:
-  - openio-ROLENAME
+beanstalkd_packages:
+  - beanstalkd
 ...

@@ -1,8 +1,8 @@
 ---
-openio_ROLENAME_sysconfig_dir: "/etc/oio/sds/{{ openio_ROLENAME_namespace }}"
-openio_ROLENAME_servicename: "ROLENAME-{{ openio_ROLENAME_serviceid }}"
+openio_beanstalkd_sysconfig_dir: "/etc/oio/sds/{{ openio_beanstalkd_namespace }}"
+openio_beanstalkd_servicename: "beanstalkd-{{ openio_beanstalkd_serviceid }}"
 
-openio_ROLENAME_definition_file: >
-  "{{ openio_ROLENAME_sysconfig_dir }}/
-  {{ openio_ROLENAME_servicename }}/{{ openio_ROLENAME_servicename }}.conf"
+openio_beanstalkd_definition_file: >
+  "{{ openio_beanstalkd_sysconfig_dir }}/
+  {{ openio_beanstalkd_servicename }}/{{ openio_beanstalkd_servicename }}.conf"
 ...

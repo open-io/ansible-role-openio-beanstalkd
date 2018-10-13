@@ -1,6 +1,6 @@
-# roles/ROLENAME/vars/Debian.yml
+# roles/beanstalkd/vars/Debian.yml
 # Distribution-specific variables for Ubuntu, Debian, ...
 ---
-ROLENAME_packages:
-  - openio-ROLENAME
+beanstalkd_packages:
+  - beanstalkd
 ...
