@@ -3,4 +3,5 @@
 ---
 beanstalkd_packages:
   - beanstalkd
+syslog_user: syslog
 ...

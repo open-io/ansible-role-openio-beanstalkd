@@ -36,7 +36,6 @@
     - "/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"
     - "{{ openio_beanstalkd_sysconfig_dir }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"
     - "{{ openio_beanstalkd_volume }}"
-    - "/var/log/oio/sds/{{ openio_beanstalkd_namespace }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"
 
 - name: Ensure directories exists
   file:
@@ -48,6 +47,16 @@
     recurse: true
   with_items: "{{ _dir.results }}"
   when: not item.stat.exists
+  tags: install
+
+- name: Ensure log directory
+  file:
+    path: "/var/log/oio/sds/{{ openio_beanstalkd_namespace }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"
+    state: directory
+    owner: "{{ syslog_user }}"
+    group: openio
+    mode: 0750
+    recurse: true
   tags: install
 
 - name: Generate configuration files
