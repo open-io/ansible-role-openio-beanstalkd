@@ -40,6 +40,7 @@ No dependencies.
   vars:
     NS: OPENIO
   roles:
+    - role: users
     - role: repo
       openio_repository_no_log: false
       openio_repository_products:
