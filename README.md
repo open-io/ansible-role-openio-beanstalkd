@@ -21,7 +21,6 @@ An Ansible role for beanstalkd. Specifically, the responsibilities of this role 
 | `openio_beanstalkd_fsync` | `1000` | ... |
 | `openio_beanstalkd_gridinit_dir` | `"/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"` | ... |
 | `openio_beanstalkd_gridinit_file_prefix` | `""` | ... |
-| `openio_beanstalkd_location` | `"{{ ansible_hostname }}.{{ openio_beanstalkd_serviceid }}"` | ... |
 | `openio_beanstalkd_namespace` | `"OPENIO"` | ... |
 | `openio_beanstalkd_provision_only` | `false` | ... |
 | `openio_beanstalkd_serviceid` | `"0"` | ... |
