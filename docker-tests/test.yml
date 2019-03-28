@@ -1,0 +1,24 @@
+# Test playbook
+---
+- hosts: all
+  become: true
+  vars:
+    NS: TRAVIS
+  roles:
+    - role: users
+    - role: repo
+      openio_repository_no_log: false
+      openio_repository_products:
+        sds:
+          release: "18.04"
+    - role: namespace
+      openio_namespace_name: "{{ NS }}"
+    - role: gridinit
+      openio_gridinit_namespace: "{{ NS }}"
+      openio_gridinit_per_ns: true
+    - role: role_under_test
+      openio_beanstalkd_namespace: "{{ NS }}"
+      openio_beanstalkd_bind_address: "{{ ansible_default_ipv4.address }}"
+      openio_beanstalkd_volume: "/var/lib/oio/sds/{{ openio_beanstalkd_namespace }}/\
+        beanstalkd-{{ openio_beanstalkd_serviceid }}"
+...
