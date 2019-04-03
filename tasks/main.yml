@@ -25,6 +25,7 @@
     - path: "/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"
     - path: "{{ openio_beanstalkd_sysconfig_dir }}/{{ openio_beanstalkd_servicename }}"
     - path: "{{ openio_beanstalkd_volume }}"
+    - path: "/etc/oio/sds/{{ openio_beanstalkd_namespace }}/watch"
     - path: "/var/log/oio/sds/{{ openio_beanstalkd_namespace }}/{{ openio_beanstalkd_servicename }}"
       owner: "{{ syslog_user }}"
       mode: "0750"
@@ -44,6 +45,8 @@
     - src: "gridinit_beanstalkd.conf.j2"
       dest: "{{ openio_beanstalkd_gridinit_dir }}/{{ openio_beanstalkd_gridinit_file_prefix }}\
         {{ openio_beanstalkd_servicename }}.conf"
+    - src: "watch-beanstalkd.yml.j2"
+      dest: "{{ openio_beanstalkd_sysconfig_dir }}/watch/{{ openio_beanstalkd_servicename }}.yml"
   register: _beanstalkd_conf
 
 - name: restart beanstalkd

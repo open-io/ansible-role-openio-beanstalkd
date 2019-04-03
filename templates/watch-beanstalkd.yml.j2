@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+---
+host: {{ openio_beanstalkd_bind_address }}
+port: {{ openio_beanstalkd_bind_port }}
+type: beanstalkd
+{% if openio_beanstalkd_location | ipaddr %}
+location: {{ openio_beanstalkd_location | replace(".", "-") }}
+{% else %}
+location: {{ openio_beanstalkd_location }}
+{% endif %}
+checks:
+  - {type: tcp}
+stats:
+  - {type: beanstalkd}
+  - {type: volume, path: {{ openio_beanstalkd_volume }}}
+  - {type: system}
+slots:
+  {{ openio_beanstalkd_slots | to_nice_yaml | indent(2) }}
+...
