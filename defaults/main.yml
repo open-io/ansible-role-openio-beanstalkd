@@ -16,4 +16,11 @@ openio_beanstalkd_binlogsize: 10240000
 
 openio_beanstalkd_volume: "/var/lib/oio/sds/{{ openio_beanstalkd_namespace }}/{{ openio_beanstalkd_servicename }}"
 openio_beanstalkd_provision_only: false
+
+openio_beanstalkd_location: "{{ ansible_hostname }}.{{ openio_beanstalkd_serviceid }}"
+openio_beanstalkd_slots:
+  "{{ [ openio_beanstalkd_type, openio_beanstalkd_type ~ '-' ~ openio_beanstalkd_location.split('.')[:-2] \
+  | join('-') ] \
+  if openio_beanstalkd_location.split('.') | length > 2 \
+  else [ openio_beanstalkd_type ] }}"
 ...
