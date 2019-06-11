@@ -5,7 +5,9 @@
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family }}.yml"
-  tags: install
+  tags:
+    - install
+    - configure
 
 - name: "Include {{ ansible_distribution }} tasks"
   include_tasks: "{{ item }}"
@@ -29,7 +31,7 @@
     - path: "/var/log/oio/sds/{{ openio_beanstalkd_namespace }}/{{ openio_beanstalkd_servicename }}"
       owner: "{{ syslog_user }}"
       mode: "0750"
-  tags: install
+  tags: configure
 
 - name: Generate configuration files
   template:
@@ -48,6 +50,7 @@
     - src: "watch-beanstalkd.yml.j2"
       dest: "{{ openio_beanstalkd_sysconfig_dir }}/watch/{{ openio_beanstalkd_servicename }}.yml"
   register: _beanstalkd_conf
+  tags: configure
 
 - name: "restart beanstalkd to apply the new configuration"
   shell: |
@@ -78,6 +81,7 @@
       delay: 5
       until: _beanstalkd_check is success
       changed_when: false
+      tags: configure
       when:
         - not openio_beanstalkd_provision_only
   when: openio_bootstrap | d(false)
