@@ -25,7 +25,7 @@ An Ansible role for beanstalkd. Specifically, the responsibilities of this role 
 | `openio_beanstalkd_provision_only` | `false` | ... |
 | `openio_beanstalkd_serviceid` | `"0"` | ... |
 | `openio_beanstalkd_volume` | `"/var/lib/oio/sds/{{ openio_beanstalkd_namespace }}/beanstalkd-{{ openio_beanstalkd_serviceid }}"` | ... |
-
+| `openio_beanstalkd_package_upgrade` | `false` | Set the packages to the latest version (to be set in extra_vars) |
 
 ## Dependencies
 
