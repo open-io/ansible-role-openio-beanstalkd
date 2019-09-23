@@ -16,6 +16,7 @@ openio_beanstalkd_binlogsize: 10240000
 
 openio_beanstalkd_volume: "/var/lib/oio/sds/{{ openio_beanstalkd_namespace }}/{{ openio_beanstalkd_servicename }}"
 openio_beanstalkd_provision_only: false
+openio_beanstalkd_package_upgrade: "{{ openio_package_upgrade | d(false) }}"
 
 openio_beanstalkd_location: "{{ openio_location_room | default ('') }}{{ openio_location_rack | default ('') }}\
   {{ openio_location_server | default (ansible_hostname ~ '.') }}{{ openio_beanstalkd_serviceid }}"
