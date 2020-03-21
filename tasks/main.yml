@@ -24,7 +24,6 @@
     group: "{{ item.group | default('openio') }}"
     mode: "{{ item.mode | default(0755) }}"
   with_items:
-    - path: "/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"
     - path: "{{ openio_beanstalkd_sysconfig_dir }}/{{ openio_beanstalkd_servicename }}"
     - path: "{{ openio_beanstalkd_volume }}"
     - path: "/etc/oio/sds/{{ openio_beanstalkd_namespace }}/watch"
