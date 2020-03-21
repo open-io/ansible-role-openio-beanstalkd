@@ -2,8 +2,8 @@
 openio_beanstalkd_namespace: "{{ namespace | default('OPENIO') }}"
 openio_beanstalkd_serviceid: "{{ 0 + openio_legacy_serviceid | d(0) | int }}"
 
-openio_beanstalkd_gridinit_dir: "/etc/gridinit.d/{{ openio_beanstalkd_namespace }}"
-openio_beanstalkd_gridinit_file_prefix: ""
+openio_beanstalkd_gridinit_dir: "{{ openio_gridinit_d | d('/etc/gridinit.d/') }}"
+openio_beanstalkd_gridinit_file_prefix: "{{ openio_beanstalkd_namespace }}-"
 
 openio_beanstalkd_bind_interface: "{{ ansible_default_ipv4.alias }}"
 openio_beanstalkd_bind_address: "{{ openio_bind_address \
@@ -14,7 +14,7 @@ openio_beanstalkd_fsync: 1000
 openio_beanstalkd_binlogsize: 10240000
 
 openio_beanstalkd_volume: "/var/lib/oio/sds/{{ openio_beanstalkd_namespace }}/{{ openio_beanstalkd_servicename }}"
-openio_beanstalkd_provision_only: false
+openio_beanstalkd_provision_only: "{{ openio_maintenance_mode | d(false) | bool }}"
 openio_beanstalkd_package_upgrade: "{{ openio_package_upgrade | d(false) }}"
 
 openio_beanstalkd_location: "{{ openio_location_room | default ('') }}{{ openio_location_rack | default ('') }}\
