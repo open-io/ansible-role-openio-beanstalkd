@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/open-io/ansible-role-openio-beanstalkd.svg?branch=master)](https://travis-ci.org/open-io/ansible-role-openio-beanstalkd)
+[![Build Status](https://travis-ci.org/open-io/ansible-role-openio-beanstalkd.svg?branch=20.04)](https://travis-ci.org/open-io/ansible-role-openio-beanstalkd)
 # Ansible role `beanstalkd`
 
 An Ansible role for beanstalkd. Specifically, the responsibilities of this role are to:
